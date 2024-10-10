@@ -1,0 +1,149 @@
+ampscript to getch header----------------
+%%[
+Var @PL, @contentBlock
+
+set @PL = AttributeValue("preferred_language")
+
+if @PL == "en" then
+    set @contentBlock = ContentBlockByID("285224")
+
+else @PL = "ms" then
+    set @contentBlock = ContentBlockByID("285226")
+endif
+]%%
+
+%%=v(@contentBlock)=%%
+
+=========================================
+
+%%[
+SET @randomNumber = Random(0, 1)
+IF @randomNumber > 0.5 THEN
+    SET @Segment = "SLA"
+ELSE
+    SET @Segment = "SLB"
+ENDIF
+]%%
+
+%%[
+SET @SubjectRows = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "subject_line")
+IF RowCount(@SubjectRows) > 0 THEN
+    SET @SubjectRow = Row(@SubjectRows, 1)
+    SET @SubjectLine = Field(@SubjectRow, "ContentValue")
+    SET @SubjectLine = Replace(@SubjectLine, "%%last_name%%", @LastName)
+ENDIF
+
+]%%
+
+%%[
+SET @TextRows1 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "hero_content")
+IF RowCount(@TextRows1) > 0 THEN
+    SET @TextRow1 = Row(@TextRows1, 1)
+    SET @TextContentHTML1 = Field(@TextRow1, "ContentValue")
+ENDIF
+]%%
+
+%%[
+SET @TextRows2 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "hero_image_content")
+IF RowCount(@TextRows2) > 0 THEN
+    SET @TextRow2 = Row(@TextRows2, 1)
+    SET @TextContentHTML2 = Field(@TextRow2, "ContentValue")
+ENDIF
+]%%
+
+=======================================
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+ 
+  <tr>
+   <td class="es-m-p20l es-m-p20r es-m-p20t" style="font-family:'Noto Sans', Arial, Helvetica, sans-serif; font-size: 24px; line-height: 36px; padding: 30px 30px 20px 30px; color:#000000;" valign="middle" align="center">
+     <b>%%=v(@TextContentHTML1)=%% %%=v(@LastName)=%%,</b></td></tr>
+<tr>
+  <td class="es-m-p20l es-m-p20r es-m-p20t" style="font-family:'Noto Sans', Arial, Helvetica, sans-serif; font-size: 16px; line-height: 24px; padding: 0px 30px 25px 30px; color:#000000;" valign="middle" align="center">
+   %%=v(@TextContentHTML2)=%%</td></tr>
+</table>
+
+---------------------------===========================
+%%[
+SET @CTARows1 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "Refer_Now_cta_image")
+IF RowCount(@CTARows1) > 0 THEN
+    SET @CTARow1 = Row(@CTARows1, 1)
+    SET @CTAImageHTML1 = Field(@CTARow1, "ContentValue")
+ENDIF
+]%%
+
+%%[
+SET @TnCRows1 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "TnC_content1")
+IF RowCount(@TnCRows1) > 0 THEN
+    SET @TnCRow1 = Row(@TnCRows1, 1)
+    SET @TnCContent1 = Field(@TnCRow1, "ContentValue")
+ENDIF
+]%%
+=====================================
+
+%%[
+SET @TextRows3 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "Win_trip_Hero_Content")
+IF RowCount(@TextRows3) > 0 THEN
+    SET @TextRow3 = Row(@TextRows3, 1)
+    SET @TextContentHTML3 = Field(@TextRow3, "ContentValue")
+ENDIF
+]%%
+
+
+%%[
+SET @CTARows2 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "Join_Now_cta_image")
+IF RowCount(@CTARows2) > 0 THEN
+    SET @CTARow2 = Row(@CTARows2, 1)
+    SET @CTAImageHTML2 = Field(@CTARow2, "ContentValue")
+ENDIF
+]%%
+
+
+%%[
+SET @TnCRows2 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "TnC_content2")
+IF RowCount(@TnCRows2) > 0 THEN
+    SET @TnCRow2 = Row(@TnCRows2, 1)
+    SET @TnCContent2 = Field(@TnCRow2, "ContentValue")
+ENDIF
+]%%
+
+
+
+
+===========================================
+<table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+<tr>
+  <td class="es-m-p20l es-m-p20r es-m-p20t" style="font-family:'Noto Sans', Arial, Helvetica, sans-serif; font-size: 17px; line-height: 20px; padding: 10px 30px 25px 30px; color:#000000;" valign="middle" align="center">
+    %%=v(@TextContentHTML3)=%%
+</td></tr>
+</table>
+
+------------------cta--------------------
+<table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center">%%=v(@CTAImageHTML1)=%%</td></tr></table>
+
+================================================
+
+%%[ 
+    SET @TnCRows3 = LookupRows(@ContentDE, "preferred_language", @PreferredLanguage, "ContentType", "Terms_Conditions")
+IF RowCount(@TnCRows3) > 0 THEN
+    SET @TnCRow3 = Row(@TnCRows3, 1)
+    SET @TNCContentHTML = Field(@TnCRow3, "ContentValue")
+ENDIF
+]%%
+
+=================================
+
+%%[
+Var @PL, @contentBlock
+
+set @PL = AttributeValue("preferred_language")
+
+if @PL == "en" then
+    set @contentBlock = ContentBlockByID("264826")
+
+else @PL = "ms" then
+    set @contentBlock = ContentBlockByID("316203")
+endif
+]%%
+
+%%=v(@contentBlock)=%%
